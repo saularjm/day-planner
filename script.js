@@ -48,11 +48,25 @@ $(document).ready(function() {
             amOrPm = "am";
         }
 
+        // Put time text in span, append time box to row
         timeBoxSpan.text(timeDisplay + amOrPm);
         rowDiv.append(timeBoxDiv);
         timeBoxDiv.append(timeBoxSpan);
 
+        // Build event box
+        var eventSpan = $("<input>");
+        eventSpan.attr("id", "input-" + arrIndex);
+        eventSpan.attr("hour", arrIndex);
+        eventSpan.attr("type", "text");
+        
+        // Set hour
+        eventSpan.val(eventArr[arrIndex]);
 
+        // Set input width, append input to row
+        var inputDiv = $("<div>");
+        inputDiv.addClass("col-9");
+        rowDiv.append(inputDiv);
+        inputDiv.append(eventSpan);
     }
 
 
