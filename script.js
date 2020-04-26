@@ -4,6 +4,9 @@ $(document).ready(function() {
     var currentDay = moment().format("dddd, MMMM Do");
     $("#currentDay").text(currentDay);
 
+    // Time format
+    var hour = moment().format("H");
+
     // Get any saved events from localStorage
     var storedEvents = JSON.parse(localStorage.getItem("storedEvents"));
 
@@ -67,6 +70,21 @@ $(document).ready(function() {
         inputDiv.addClass("col-9");
         rowDiv.append(inputDiv);
         inputDiv.append(eventSpan);
+
+        // Build save button
+        var saveDiv = $("<div>");
+        saveDiv.addClass("col-1");
+
+        var saveBtn = $("<button>");
+        saveBtn.attr("id", "saveId-" + arrIndex);
+        saveBtn.attr("save", arrIndex);
+        saveBtn.addClass("saveBtn");
+
+        // Append to row
+        rowDiv.append(saveDiv);
+        saveDiv.append(saveBtn);
+
+        planner.append(rowDiv);
     }
 
 
