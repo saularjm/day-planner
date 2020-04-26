@@ -1,11 +1,11 @@
-$(document).ready(function() {
+ $(document).ready(function() {
 
     // Get current day and display in header
     var currentDay = moment().format("dddd, MMMM Do");
     $("#currentDay").text(currentDay);
 
     // Time format
-    var hour = moment().format("H");
+    var currentHour = moment().format("H");
 
     // Get any saved events from localStorage
     var storedEvents = JSON.parse(localStorage.getItem("storedEvents"));
@@ -22,7 +22,7 @@ $(document).ready(function() {
     planner.empty();
 
     // Build day calendar
-    for (var hr = 9; hr = 17; hr++) {
+    for (var hr = 9; hr <= 17; hr++) {
         var arrIndex = hr - 9;
 
         // Build row divs
@@ -34,9 +34,7 @@ $(document).ready(function() {
         // Build time box
         var timeBoxDiv = $("<div>");
         timeBoxDiv.addClass("col-2");
-
-        var timeBoxSpan = $("<span>");
-        timeBoxSpan.addClass("hour");
+        timeBoxDiv.addClass("hour");
 
         // Format time
         var timeDisplay = 0;
@@ -52,9 +50,8 @@ $(document).ready(function() {
         }
 
         // Put time text in span, append time box to row
-        timeBoxSpan.text(timeDisplay + amOrPm);
+        timeBoxDiv.text(timeDisplay + amOrPm);
         rowDiv.append(timeBoxDiv);
-        timeBoxDiv.append(timeBoxSpan);
 
         // Build event box
         var eventSpan = $("<input>");
@@ -84,9 +81,30 @@ $(document).ready(function() {
         rowDiv.append(saveDiv);
         saveDiv.append(saveBtn);
 
+        // Change row color depending on time
+        if (hr < currentHour) {
+            rowDiv.addClass("past");
+        }
+        else if (hr > currentHour) {
+            rowDiv.addClass("future");
+        }
+        else {
+            rowDiv.addClass("present");
+        }
+
         planner.append(rowDiv);
     }
 
+//     // Save button function
+//     $("button").on("click", function(event) {
+//         event.preventDefault();
 
+//         var saveIndex = $(this).attr("save");
+//         var inputId = "#input-" + saveIndex;
+//         var inputValue = $(inputId).val();
 
-})
+//         eventArr[saveIndex] = inputValue;
+
+//         localStorage.setItem("storedEvents", JSON.stringify(eventArr));
+//     })
+ })
