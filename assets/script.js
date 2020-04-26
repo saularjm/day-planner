@@ -10,9 +10,11 @@
     // Get any saved events from localStorage
     var storedEvents = JSON.parse(localStorage.getItem("storedEvents"));
 
+    // Populate with stored events, if any
     if (storedEvents !== null) {
         eventArr = storedEvents;
     }
+    // Else, create array for event storage
     else {
         eventArr = new Array(9);
     }
@@ -44,28 +46,23 @@
             timeDisplay = hr - 12;
             amOrPm = "pm";
         }
+        else if (hr === 12) {
+            timeDisplay = hr;
+            amOrPm = "pm";
+        }
         else {
             timeDisplay = hr;
             amOrPm = "am";
         }
 
-        // Put time text in span, append time box to row
+        // Set time text, append time box to row
         timeBoxDiv.text(timeDisplay + amOrPm);
         rowDiv.append(timeBoxDiv);
 
-        // Build event box
-        // var eventSpan = $("<input>");
-        // eventSpan.attr("id", "input-" + arrIndex);
-        // eventSpan.attr("hour", arrIndex);
-        // eventSpan.attr("type", "text");
-        
-        
-
-        // Build event box
+        // Build event input box
         var inputDiv = $("<input>");
         inputDiv.addClass("col-9");
         inputDiv.attr("id", "input-" + arrIndex);
-        inputDiv.attr("hour", arrIndex);
         inputDiv.attr("type", "text");
 
         // Set hour
@@ -73,12 +70,11 @@
 
         // Append input to row
         rowDiv.append(inputDiv);
-        //inputDiv.append(eventSpan);
 
         // Build save button
         var saveBtn = $("<button>");
-        saveBtn.attr("id", "saveId-" + arrIndex);
-        saveBtn.attr("save", arrIndex);
+        saveBtn.attr("saveId", arrIndex);
+        saveBtn.addClass("fa fa-save");
         saveBtn.addClass("saveBtn");
         saveBtn.addClass("col-1");
 
@@ -96,6 +92,7 @@
             inputDiv.addClass("present");
         }
 
+        // Append rows to container
         planner.append(rowDiv);
     }
 
@@ -103,12 +100,15 @@
     $("button").on("click", function(event) {
         event.preventDefault();
 
-        var saveIndex = $(this).attr("save");
+        // Match id's of saveBtn and inputDiv
+        var saveIndex = $(this).attr("saveId");
         var inputId = "#input-" + saveIndex;
         var inputValue = $(inputId).val();
 
+        // Store input value in array
         eventArr[saveIndex] = inputValue;
 
+        // Store array in localStorage
         localStorage.setItem("storedEvents", JSON.stringify(eventArr));
     })
  })
