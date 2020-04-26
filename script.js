@@ -54,42 +54,46 @@
         rowDiv.append(timeBoxDiv);
 
         // Build event box
-        var eventSpan = $("<input>");
-        eventSpan.attr("id", "input-" + arrIndex);
-        eventSpan.attr("hour", arrIndex);
-        eventSpan.attr("type", "text");
+        // var eventSpan = $("<input>");
+        // eventSpan.attr("id", "input-" + arrIndex);
+        // eventSpan.attr("hour", arrIndex);
+        // eventSpan.attr("type", "text");
         
-        // Set hour
-        eventSpan.val(eventArr[arrIndex]);
+        
 
-        // Set input width, append input to row
-        var inputDiv = $("<div>");
+        // Build event box
+        var inputDiv = $("<input>");
         inputDiv.addClass("col-9");
+        inputDiv.attr("id", "input-" + arrIndex);
+        inputDiv.attr("hour", arrIndex);
+        inputDiv.attr("type", "text");
+
+        // Set hour
+        inputDiv.val(eventArr[arrIndex]);
+
+        // Append input to row
         rowDiv.append(inputDiv);
-        inputDiv.append(eventSpan);
+        //inputDiv.append(eventSpan);
 
         // Build save button
-        var saveDiv = $("<div>");
-        saveDiv.addClass("col-1");
-
         var saveBtn = $("<button>");
         saveBtn.attr("id", "saveId-" + arrIndex);
         saveBtn.attr("save", arrIndex);
         saveBtn.addClass("saveBtn");
+        saveBtn.addClass("col-1");
 
         // Append to row
-        rowDiv.append(saveDiv);
-        saveDiv.append(saveBtn);
+        rowDiv.append(saveBtn);
 
         // Change row color depending on time
         if (hr < currentHour) {
-            rowDiv.addClass("past");
+            inputDiv.addClass("past");
         }
         else if (hr > currentHour) {
-            rowDiv.addClass("future");
+            inputDiv.addClass("future");
         }
         else {
-            rowDiv.addClass("present");
+            inputDiv.addClass("present");
         }
 
         planner.append(rowDiv);
