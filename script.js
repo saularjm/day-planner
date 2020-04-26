@@ -95,16 +95,16 @@
         planner.append(rowDiv);
     }
 
-//     // Save button function
-//     $("button").on("click", function(event) {
-//         event.preventDefault();
+    // Save button function
+    $("button").on("click", function(event) {
+        event.preventDefault();
 
-//         var saveIndex = $(this).attr("save");
-//         var inputId = "#input-" + saveIndex;
-//         var inputValue = $(inputId).val();
+        var saveIndex = $(this).attr("save");
+        var inputId = "#input-" + saveIndex;
+        var inputValue = $(inputId).val();
 
-//         eventArr[saveIndex] = inputValue;
+        eventArr[saveIndex] = inputValue;
 
-//         localStorage.setItem("storedEvents", JSON.stringify(eventArr));
-//     })
+        localStorage.setItem("storedEvents", JSON.stringify(eventArr));
+    })
  })
