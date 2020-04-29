@@ -13,3 +13,5 @@ to it. Users can input tasks for a certain time block and save the
 text.
 - These events are saved in local storage and repopulated upon the
 page loading.
+
+- Check out the deployed application here: https://saularjm.github.io/day-planner/
