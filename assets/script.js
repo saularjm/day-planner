@@ -33,12 +33,12 @@
         rowDiv.addClass("row");
         rowDiv.attr("hour", hr);
 
-        // Build time box
-        var timeBoxDiv = $("<div>");
-        timeBoxDiv.addClass("col-2");
-        timeBoxDiv.addClass("hour");
+        // Build time divs
+        var timeDiv = $("<div>");
+        timeDiv.addClass("col-2");
+        timeDiv.addClass("hour");
 
-        // Format time
+        // Format time, accounting for 24hour adjustment
         var timeDisplay = 0;
         var amOrPm = "";
 
@@ -55,9 +55,9 @@
             amOrPm = "am";
         }
 
-        // Set time text, append time box to row
-        timeBoxDiv.text(timeDisplay + amOrPm);
-        rowDiv.append(timeBoxDiv);
+        // Set time text, append time div to row
+        timeDiv.text(timeDisplay + amOrPm);
+        rowDiv.append(timeDiv);
 
         // Build event input box
         var inputDiv = $("<input>");
